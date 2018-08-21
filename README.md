@@ -9,6 +9,8 @@ This program can bidirectionally convert between the two formats.
 
 Please note that the program cannot currently convert scaled Science-Birds objects.
 
+Please note that due to the two games using different physics engines, there is no guarantee that levels will remain stable when converted.
+
 If using the Iratus Aves level generator (https://github.com/stepmat/IratusAves), the "add_slopes" parameter must be set to false in order to generate levels that can then be successfully converted.
 
 Science-Birds level             |  Angry Birds level
