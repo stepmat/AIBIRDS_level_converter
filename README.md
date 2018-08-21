@@ -1,5 +1,5 @@
 # AIBIRDS_level_converter
-This program can convert levels between the Science Birds .xml format, and the official Angry Birds .json format.
+This program can convert levels between the Science-Birds .xml format, and the official Angry Birds .json format.
 
 Run the converter with two parameters, the level file to be converted and the file to convert it into.
 
