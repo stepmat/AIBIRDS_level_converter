@@ -405,7 +405,7 @@ elif sys.argv[1][-4:] == ".xml":
     f.write('"counts": {\n')
     f.write('"birds": %s,\n' % str(number_birds))
 
-    number_blocks = len(blocks)+len(pigs)+len(platforms)
+    number_blocks = len(blocks)+len(pigs)+len(platforms)+len(tnts)+1
     
     f.write('"blocks": %s\n' % str(number_blocks))
     f.write('},\n')
