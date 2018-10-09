@@ -1,4 +1,3 @@
-
 import sys
 
 FILE = open(sys.argv[1], 'r')
@@ -64,9 +63,6 @@ bird_bank2 = {
             "BirdBlack":"BIRD_BLACK",
             "BirdWhite":"BIRD_WHITE"
             }
-
-
-
 
 
 
@@ -206,8 +202,6 @@ if sys.argv[1][-5:] == ".json":
 
 
 
-
-
 elif sys.argv[1][-4:] == ".xml":
     # read from xml file
     while(original != ""):
@@ -231,16 +225,10 @@ elif sys.argv[1][-4:] == ".xml":
             print(slingshot_x)
             print(slingshot_y)
 
-
-
-
-
-            
-
         if original[0:6] == '<Block':
 
             temp = original.split()         
-            
+
             angle = temp[-2]            # angle
             angle = angle[10:-1]
             angle = float(angle)
@@ -261,15 +249,6 @@ elif sys.argv[1][-4:] == ".xml":
             
             blocks.append([name,x,y,angle, material])
 
-            #print(blocks)
-            #print("")
-
-
-
-
-
-
-        
         if original[0:4] == '<Pig':
 
             temp = original.split()         
@@ -291,15 +270,6 @@ elif sys.argv[1][-4:] == ".xml":
             
             pigs.append([name,x,y,angle])
 
-            #print(blocks)
-            #print("")
-
-
-
-
-
-
-
         if original[0:4] == '<TNT':
 
             temp = original.split()         
@@ -315,27 +285,13 @@ elif sys.argv[1][-4:] == ".xml":
             x = temp[-4]             # x position
             x = x[3:-1]
             x = float(x)
-
-            
+  
             tnts.append([x,y,angle])
-
-            #print(blocks)
-            #print("")
-
-
-
-
-
-
 
         if original[0:9] == '<Platform':
 
             temp = original.split()
-            
-            #angle = temp[-4]            # angle
-            #angle = angle[10:-1]
-            #angle = float(angle)
-                   
+
             y = temp[-2]             # y position
             y = y[3:-1]
             y = float(y)
@@ -346,13 +302,7 @@ elif sys.argv[1][-4:] == ".xml":
             
             platforms.append([x,y,angle])
 
-            #print(blocks)
-            #print("")
-
-
         original = FILE.readline()
-
-
 
     print("")
     print(blocks)
@@ -364,22 +314,9 @@ elif sys.argv[1][-4:] == ".xml":
     print(platforms)
 
 
-
-
-
-
-
-
-
-
-
-
     f = open(sys.argv[2], "w")
 
-
-
     number_birds = len(birds)
-
 
     f.write('{\n')
     f.write('"camera": [\n')
@@ -426,9 +363,6 @@ elif sys.argv[1][-4:] == ".xml":
         f.write('},\n')
             
     block_number = 1
-
-
-
     for block in blocks:
         block[1] = (block[1]+12.0)*SCALE_FACTOR
         block[2] = ((block[2]+absolute_ground)*SCALE_FACTOR)
@@ -449,8 +383,6 @@ elif sys.argv[1][-4:] == ".xml":
         tnt[1] = ((tnt[1]+absolute_ground)*SCALE_FACTOR)
         tnt[2] = ((tnt[2]-360) * -1)
 
-
-
     for i in blocks:
         rotation = i[3]
         f.write('"block_%s": {\n' % str(block_number))
@@ -470,12 +402,6 @@ elif sys.argv[1][-4:] == ".xml":
 
         block_number = block_number + 1
 
-
-
-
-
-
-
     for platform in platforms:
         f.write('"block_%s": {\n' % str(block_number))
         f.write('"angle": %s,\n' % str(platform[2]))
@@ -485,7 +411,6 @@ elif sys.argv[1][-4:] == ".xml":
         f.write('},\n')
         block_number = block_number + 1
 
-
     f.write('"block_%s": {\n' % str(block_number))
     f.write('"angle": %s,\n' % 360.0)
     f.write('"id": "TERRAIN_TEXTURED_HILLS_32X2",\n')
@@ -493,7 +418,6 @@ elif sys.argv[1][-4:] == ".xml":
     f.write('"y": %s\n' % 1.0)
     f.write('},\n')
     block_number = block_number + 1
-
 
     for tnt in tnts:
         f.write('"block_%s": {\n' % str(block_number))
@@ -504,11 +428,7 @@ elif sys.argv[1][-4:] == ".xml":
         f.write('},\n')
         block_number = block_number + 1
 
-        
-
-
     for j in pigs:
-
         f.write('"block_%s": {\n' % str(block_number))
         f.write('"angle": 0.0,\n')
         f.write('"id": "PIG_BASIC_SMALL",\n')
@@ -522,17 +442,12 @@ elif sys.argv[1][-4:] == ".xml":
 
         block_number = block_number + 1
 
-
-
     for t in tnts:
         continue
          
-        
     f.write('}\n')
     f.write('}\n')
 
     f.close()
 
 
-
-    
